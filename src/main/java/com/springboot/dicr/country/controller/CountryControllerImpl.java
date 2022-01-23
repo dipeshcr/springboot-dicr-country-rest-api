@@ -1,7 +1,10 @@
 package com.springboot.dicr.country.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,8 +35,9 @@ public class CountryControllerImpl implements ICountryController {
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
-	public ResponseEntity<CountryDTO> createCountry(@RequestBody CountryDTO countryDTO) {
+	public ResponseEntity<CountryDTO> createCountry(@Valid @RequestBody CountryDTO countryDTO) {
 		return new ResponseEntity<>(this.countryService.createCountry(countryDTO), HttpStatus.CREATED);
 	}
 
@@ -44,12 +48,14 @@ public class CountryControllerImpl implements ICountryController {
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/{id}")
-	public ResponseEntity<CountryDTO> updateCountry(@RequestBody CountryDTO countryDTO, @PathVariable Long id) {
+	public ResponseEntity<CountryDTO> updateCountry(@Valid @RequestBody CountryDTO countryDTO, @PathVariable Long id) {
 		return new ResponseEntity<>(this.countryService.updateCountry(countryDTO, id), HttpStatus.OK);
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteCountryById(@PathVariable Long id) {
 		this.countryService.deleteCountryById(id);
