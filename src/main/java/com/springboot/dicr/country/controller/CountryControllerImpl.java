@@ -21,6 +21,10 @@ import com.springboot.dicr.country.service.ICountryQueryService;
 import com.springboot.dicr.country.service.ICountryService;
 import com.springboot.dicr.country.utils.AppConstants;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value = "CRUD Rest APIs for Country Resources")
 @RestController
 @RequestMapping("/api/v1/countries")
 public class CountryControllerImpl implements ICountryController {
@@ -35,6 +39,7 @@ public class CountryControllerImpl implements ICountryController {
 	}
 
 	@Override
+	@ApiOperation(value = "Create Country REST API")
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
 	public ResponseEntity<CountryDTO> createCountry(@Valid @RequestBody CountryDTO countryDTO) {
@@ -42,12 +47,14 @@ public class CountryControllerImpl implements ICountryController {
 	}
 
 	@Override
+	@ApiOperation(value = "Get Country by ID REST API")
 	@GetMapping("/{id}")
 	public ResponseEntity<CountryDTO> getCountryById(@PathVariable Long id) {
 		return new ResponseEntity<>(this.countryQueryService.findCountryById(id), HttpStatus.OK);
 	}
 
 	@Override
+	@ApiOperation(value = "Update Country by ID REST API")
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/{id}")
 	public ResponseEntity<CountryDTO> updateCountry(@Valid @RequestBody CountryDTO countryDTO, @PathVariable Long id) {
@@ -55,6 +62,7 @@ public class CountryControllerImpl implements ICountryController {
 	}
 
 	@Override
+	@ApiOperation(value = "Delete Country by ID REST API")
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteCountryById(@PathVariable Long id) {
@@ -64,6 +72,7 @@ public class CountryControllerImpl implements ICountryController {
 	}
 
 	@Override
+	@ApiOperation(value = "Get All Countries REST API")
 	@GetMapping
 	public ResponseEntity<CountryResponse> getAllCountries(
 			@RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) Integer pageNo,

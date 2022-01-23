@@ -27,6 +27,10 @@ import com.springboot.dicr.country.repository.IUserRepository;
 import com.springboot.dicr.country.security.JwtTokenProvider;
 import com.springboot.dicr.country.utils.BusinessMessages;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value = "Auth Controller exposes sing-in and sign-up REST APIs")
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthControllerImpl implements IAuthController{
@@ -47,6 +51,7 @@ public class AuthControllerImpl implements IAuthController{
 	private JwtTokenProvider tokenProvider;
 
 	@Override
+	@ApiOperation(value = "REST API to login or SignIn user to Country App")
 	@PostMapping("/signin")
 	public ResponseEntity<JwtAuthResponseDTO> authenticateUser(@Valid @RequestBody LoginDTO loginDTO) {
 		Authentication authentication = this.authenticationAuthorizationManager.authenticate(
@@ -60,6 +65,7 @@ public class AuthControllerImpl implements IAuthController{
 	}
 
 	@Override
+	@ApiOperation(value = "REST API to register or SignUp user to Country App")
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpDTO signUpDTO) {
 		if (userRepository.existsByUserName(signUpDTO.getUserName())) {
