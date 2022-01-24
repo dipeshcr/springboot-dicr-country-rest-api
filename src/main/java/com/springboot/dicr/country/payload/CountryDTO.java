@@ -1,6 +1,7 @@
 package com.springboot.dicr.country.payload;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.springboot.dicr.country.utils.BusinessMessages;
@@ -37,7 +38,7 @@ public class CountryDTO {
 	private String subRegion;
 
 	@ApiModelProperty(value = "Country Area")
-	@NotEmpty
+	@NotNull
 	private double area;
 
 }
