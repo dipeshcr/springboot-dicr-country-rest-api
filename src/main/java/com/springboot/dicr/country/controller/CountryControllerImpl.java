@@ -23,6 +23,7 @@ import com.springboot.dicr.country.utils.AppConstants;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @Api(value = "CRUD Rest APIs for Country Resources")
 @RestController
@@ -67,7 +68,7 @@ public class CountryControllerImpl implements ICountryController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteCountryById(@PathVariable Long id) {
 		this.countryService.deleteCountryById(id);
-		
+
 		return new ResponseEntity<>("Country Entity With ID: " + id + " deleted sucessfully", HttpStatus.OK);
 	}
 
@@ -77,8 +78,8 @@ public class CountryControllerImpl implements ICountryController {
 	public ResponseEntity<CountryResponse> getAllCountries(
 			@RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) Integer pageNo,
 			@RequestParam(value = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) Integer pageSize,
-			@RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY, required = false) String sortBy,
-			@RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
+			@ApiParam(value = "Available sorting options: id, name, capital, region, subRegion, area") @RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY, required = false) String sortBy,
+			@ApiParam(value = "Available sorting options: asc, desc") @RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
 		return new ResponseEntity<>(this.countryQueryService.findAllCountries(pageNo, pageSize, sortBy, sortDir),
 				HttpStatus.OK);
 	}
