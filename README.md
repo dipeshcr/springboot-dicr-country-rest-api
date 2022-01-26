@@ -22,6 +22,13 @@ To access the springboot-dicr-country-rest-api documentation, please click on th
 </p>
 (http://dicr-country-rest-api.herokuapp.com/swagger-ui/)
 
+<h3 align="left"># springboot-dicr-country-rest-api Swagger User Guide:</h3>
+<p align="left">
+To access the springboot-dicr-country-rest-api swagger user guide, please click on the link below:
+</p>
+
+[Swagger User Guide](/SpringBootCountryRESTAPISWAGGER-UserGuide.pdf)
+
 <h3 align="left">Languages and Tools Used to build the REST API:</h3>
 <p align="left"> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://heroku.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> <a href="https://spring.io/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> </a> </p>
 
