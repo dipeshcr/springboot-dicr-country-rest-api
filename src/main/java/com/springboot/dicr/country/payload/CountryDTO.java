@@ -8,10 +8,16 @@ import com.springboot.dicr.country.utils.BusinessMessages;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @ApiModel(description = "Country Model Information")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CountryDTO {
 
 	@ApiModelProperty(value = "Country Id")
