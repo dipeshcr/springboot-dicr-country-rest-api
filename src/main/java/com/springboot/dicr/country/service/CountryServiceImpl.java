@@ -2,6 +2,7 @@ package com.springboot.dicr.country.service;
 
 import org.springframework.stereotype.Service;
 
+import com.springboot.dicr.country.exception.ResourceFoundException;
 import com.springboot.dicr.country.exception.ResourceNotFoundException;
 import com.springboot.dicr.country.model.CountryEntity;
 import com.springboot.dicr.country.payload.CountryDTO;
@@ -23,6 +24,13 @@ public class CountryServiceImpl implements ICountryService {
 	@Override
 	public CountryDTO createCountry(CountryDTO countryDTO) {
 		CountryEntity country = this.countryTransformer.transformFromDTO(countryDTO);
+		
+		boolean countryExists = verifyIfCountryExists(country.getName());
+		
+		if(countryExists) {
+			throw new ResourceFoundException("Country", "name", country.getName());
+		}
+		
 		CountryEntity saveCountry = this.countryRepository.save(country);
 		CountryDTO countryResponseDTO = this.countryTransformer.transformToDTO(saveCountry);
 
@@ -52,6 +60,10 @@ public class CountryServiceImpl implements ICountryService {
 
 		this.countryRepository.deleteById(id);
 
+	}
+
+	private boolean verifyIfCountryExists(String countryName) {
+		return this.countryRepository.findByName(countryName).isPresent();
 	}
 
 }
